@@ -23,10 +23,7 @@ router.get('/quotes/:id', asyncHandler(async (req, res, next) => {
     res.json(quote)
 }))
 
-router.get('/quotes/quote/random',asyncHandler(async(req,res,next)=>{
-    const quote=await records.getRandomQuote()
-    res.json(quote)
-}))
+
 
 //Adding new quotes
 router.post('/quotes', asyncHandler(async (req, res, next) => {
@@ -49,7 +46,7 @@ router.put('/quotes/:id', asyncHandler(async (req, res, next) => {
     if (quote) {
         quote.quote = req.body.quote;
         quote.author = req.body.author;
-        await records.updateQuote(quote)
+        await records.updateQuote(quote,req.params.id)
         res.end()
     } else {
         res.status(404).json({ message: "Quote not found." })
@@ -58,8 +55,7 @@ router.put('/quotes/:id', asyncHandler(async (req, res, next) => {
 }))
 //Delete request using id to delete quote
 router.delete('/quotes/:id', asyncHandler(async (req, res, next) => {
-    const quote = await records.getQuote(req.params.id)
-    await records.deleteQuote(quote)
+    await records.deleteQuote(req.params.id)
     res.status(204).end()
 }))
 

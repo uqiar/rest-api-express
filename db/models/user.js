@@ -18,6 +18,7 @@ module.exports = (sequelize) => {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           notNull: {
             msg: 'Please provide a value for "email"',

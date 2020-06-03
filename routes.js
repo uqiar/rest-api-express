@@ -9,7 +9,7 @@ function asyncHandler(callBack) {
         try {
             await callBack(req, res, next)
         } catch (err) {
-            next(err)
+            res.status(400).json(err)
         }
     }
 }

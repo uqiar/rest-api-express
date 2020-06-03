@@ -9,7 +9,7 @@ app.use('/api',routes)
 const port = process.env.PORT || 3002;
 (async()=>{
     require('./passport')
-    await db.sequelize.sync({ force: false });
+    await db.sequelize.sync({ force: true });
     sequelize
     .authenticate()
     .then(() => console.log("Connection has been established successfully."))

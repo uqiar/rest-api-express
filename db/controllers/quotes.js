@@ -1,8 +1,7 @@
 
-const db = require('./db');
+const {db} = require('..');
 const { Quotes } = db.models;
 const { Op } = db.Sequelize;
-
 /**
  * Gets all quotes
  * @param None

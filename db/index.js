@@ -13,5 +13,6 @@ const db = {
 };
 
 db.models.Quotes = require('./models/quotes.js')(sequelize);
+db.models.User = require('./models/user.js')(sequelize);
 
-module.exports = db;
+module.exports = {db,sequelize};

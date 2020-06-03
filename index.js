@@ -1,14 +1,18 @@
 const express = require('express')
 const routes=require('./routes')
-const db = require('./db');
+const {db,sequelize} = require('./db');
 
 const app = express()
 app.use(express.json())
 app.use('/api',routes)
 const port = 3002;
-
 (async()=>{
-    await db.sequelize.sync({ force: true });
+    require('./passport')
+    await db.sequelize.sync({ force: false });
+    sequelize
+    .authenticate()
+    .then(() => console.log("Connection has been established successfully."))
+    .catch(err => console.error("Unable to connect to the database:", err))
 })()
 //handle not fond request
 app.use((req, res, next) => {

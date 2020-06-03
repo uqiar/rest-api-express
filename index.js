@@ -1,11 +1,12 @@
 const express = require('express')
 const routes=require('./routes')
 const {db,sequelize} = require('./db');
+require('dotenv').config();
 
 const app = express()
 app.use(express.json())
 app.use('/api',routes)
-const port = 3002;
+const port = process.env.PORT || 3002;
 (async()=>{
     require('./passport')
     await db.sequelize.sync({ force: false });

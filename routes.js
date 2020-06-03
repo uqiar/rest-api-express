@@ -79,5 +79,7 @@ router.post('/login', asyncHandler(async (req, res, next) => {
     res.json(user)
 }))
 
-
+router.get('/test',(req,res)=>{
+    res.json("Server is running!")
+})
 module.exports = router
